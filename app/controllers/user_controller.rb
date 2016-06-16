@@ -1,18 +1,22 @@
 class UserController < ApplicationController
-  CLIENT_ID = "34c53dab4920c44f4c51"
+  CLIENT_ID     = "34c53dab4920c44f4c51"
   CLIENT_SECRET = "e772d5f5700c17720960ce56075053f31d961dfa"
 
-  DEBUG_MODE = true
+  DEBUG_MODE   = true
   ACCESS_TOKEN = "f9af1b89345bd0bda7b9f5dcbf8e6da7dcd4f224"
 
   def new
   end
 
   def info
-  	users = User.where("name='crispgm'")
+    users = User.where("name='crispgm'")
     @user = users[0]
 
     render "user/info"
+  end
+
+  def signout
+    cookies.delete(:name)
   end
 
   def callback
@@ -37,7 +41,7 @@ class UserController < ApplicationController
       end
 
     end
-     
+
     # access_token = DEBUG_MODE == true ? ACCESS_TOKEN : token_string.split("=").at(1)
     # url = URI.parse("https://api.github.com/user?access_token=#{access_token}")
     # http = Net::HTTP.new(url.host, url.port)
@@ -58,7 +62,11 @@ class UserController < ApplicationController
 
     @user.save
 
+    cookies[:name] = @user.name
+    cookies[:token] = get_cookies_token
+
     render "user/callback"
-    
+
   end
+
 end
