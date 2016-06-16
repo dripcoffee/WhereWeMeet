@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   
   get 'about' => 'index#about'
   get 'user/new' => 'user#new'
+  get 'user/callback' => 'user#callback'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

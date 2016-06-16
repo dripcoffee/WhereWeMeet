@@ -5,10 +5,38 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <link href="/css/bootstrap.css" rel="stylesheet">
+  <link href="/css/font-awesome.css" rel="stylesheet">
+  <link href="/css/docs.css" rel="stylesheet">
+  <link href="/css/bootstrap-social.css" rel="stylesheet">
 </head>
 <body>
 
+<div class="jumbotron">
+  <div class="container">
+    <h1 class="title">Where We Meet?</h1>
+    <p>A web app to provide choice of place where we to meet.</p>
+    <ul class="jumbotron-links">
+      <li><a href="/">Home</a></li>
+      <li>Groups</li>
+      <li>Activities</li>
+      <li>crispgm</li>
+    </ul>
+  </div>
+
+</div>
+
 <%= yield %>
+
+</div>
+
+<footer>
+  <ul class="links">
+  	<li>Copyright &copy; WhereWeMeet</li>
+    <li>About</li>
+    <li>Terms</li>
+  </ul>
+</footer>
 
 </body>
 </html>

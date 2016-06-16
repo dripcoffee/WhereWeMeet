@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+
+.avatar img{
+  width: 230px;
+  height: 230px;
+}
