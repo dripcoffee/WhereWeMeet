@@ -8,6 +8,13 @@ class UserController < ApplicationController
   def new
   end
 
+  def info
+  	users = User.where("name='crispgm'")
+    @user = users[0]
+
+    render "user/info"
+  end
+
   def callback
 
     require "net/http"
@@ -47,6 +54,9 @@ class UserController < ApplicationController
     @user = User.new
     @user.name = "crispgm"
     @user.avatar_url = "https://avatars.githubusercontent.com/u/1425636?v=3"
+    @user.token = ACCESS_TOKEN
+
+    @user.save
 
     render "user/callback"
     

@@ -1,0 +1,18 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-offset-4 col-sm-4">
+    <div class="avatar text-center">
+      <img src="<%= @user.avatar_url %>">
+    </div>
+    <h2>
+      <a target="_blank" href="https://github.com/<%= @user.name %>">
+        <span class="fa fa-github"> <%= @user.name %>
+      </a>
+      <a href="btn btn-outline">
+        <span class="fa fa-sign-out">
+        Log out
+      </a>
+    </h2>
+    </div>
+  </div>
+</div>
