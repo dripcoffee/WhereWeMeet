@@ -1,12 +1,27 @@
 <div class="how-to">
 <div class="container">
   <div class="row">
-    <div class="col-sm-offset-4 col-sm-4">
+  	<h2>Activities</h2>
+    <div class="col-md-offset-2 col-md-8 text-center">
+      <a href="/activity/new">New Activity</a>
+      |
+      <a href="/activity/<%= @user.name %>">My Activities</a>
     </div>
   </div>
   <div class="row">
-    <div class="col-md-offset-2 col-md-8">
-      <a href="/activity/new">New Activity</a>
+    <div class="col-sm-offset-3 col-sm-6">
+    <% if @activities.empty? %>
+      No live activity.
+    <% else %>
+      <ul class="social-class list-unstyled">
+      <% @activities.each do |activity| %>
+        <li>
+          <code><a href="/activity/<%= activity.id %>"><%= activity.name %></a></code>
+          <span class="social-hex"><%= activity.created_at %></span>
+        </li>
+      <% end %>
+      </ul>
+    <% end %>
     </div>
   </div>
 </div>

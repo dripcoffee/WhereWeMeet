@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   get 'user/new' => 'user#new'
   get 'user/callback' => 'user#callback'
   get 'user/info' => 'user#info'
+  get 'user/signout' => 'user#signout'
 
   post 'activity/add' => 'activity#add'
   # The priority is based upon order of creation: first created -> highest priority.

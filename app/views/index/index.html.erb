@@ -1,26 +1,27 @@
 <div class="how-to">
 <div class="container">
   <div class="row">
-    <div class="col-sm-offset-4 col-sm-4">
-      <a class="btn btn-block btn-social btn-lg btn-github" href="https://github.com/login/oauth/authorize?client_id=34c53dab4920c44f4c51">
+    <div class="col-sm-offset-3 col-sm-3">
+      <a class="text-center btn btn-block btn-social btn-lg btn-github" href="https://github.com/login/oauth/authorize?client_id=34c53dab4920c44f4c51">
         <span class="fa fa-github"></span> Sign in with GitHub
       </a>
     </div>
-  </div>
+  </div>  
   <div class="row">
-    <div class="col-md-offset-2 col-md-8">
-      <h2>How to use</h2>
-      <ol class="text-left">
-        <li>Register an account
-          <p>Sign in is only available for GitHub account, as this is a tool for programmer.</p>
+    <h2>New Activities</h2>
+    <div class="col-sm-offset-3 col-sm-6">
+    <% if @activities.empty? %>
+      No live activity.
+    <% else %>
+      <ul class="social-class list-unstyled">
+      <% @activities.each do |activity| %>
+        <li>
+          <code><a href="/activity/<%= activity.id %>"><%= activity.name %></a></code>
+          <span class="social-hex"><%= activity.created_at %></span>
         </li>
-        <li>Join a group
-          <p>Join a group with your friends.</p>
-        </li>
-        <li>Check in an activity
-          <p>Create an activity or find one created by your friends, then check-in.</p>
-        </li>
-      </ol>
+      <% end %>
+      </ul>
+    <% end %>
     </div>
   </div>
 </div>

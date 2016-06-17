@@ -17,6 +17,8 @@ class UserController < ApplicationController
 
   def signout
     cookies.delete(:name)
+
+    redirect_to action: "index", controller: "index"
   end
 
   def callback
@@ -42,28 +44,27 @@ class UserController < ApplicationController
 
     end
 
-    # access_token = DEBUG_MODE == true ? ACCESS_TOKEN : token_string.split("=").at(1)
-    # url = URI.parse("https://api.github.com/user?access_token=#{access_token}")
-    # http = Net::HTTP.new(url.host, url.port)
-    # http.use_ssl = true
+    access_token = DEBUG_MODE == true ? ACCESS_TOKEN : token_string.split("=").at(1)
+    url = URI.parse("https://api.github.com/user?access_token=#{access_token}")
+    http = Net::HTTP.new(url.host, url.port)
+    http.use_ssl = true
 
-    # response = http.start() {|http| http.get(url.request_uri)}
+    response = http.start() {|http| http.get(url.request_uri)}
 
-    # user_json = ActiveSupport::JSON.decode response.body
-
-    # @user = User.new
-    # @user.name = user_json["login"]
-    # @user.avatar_url = user_json["avatar_url"]
+    user_json = ActiveSupport::JSON.decode response.body
 
     @user = User.new
-    @user.name = "crispgm"
-    @user.avatar_url = "https://avatars.githubusercontent.com/u/1425636?v=3"
-    @user.token = ACCESS_TOKEN
+    @user.name = user_json["login"]
+    @user.avatar_url = user_json["avatar_url"]
+
+    # @user = User.new
+    # @user.name = "crispgm"
+    # @user.avatar_url = "https://avatars.githubusercontent.com/u/1425636?v=3"
+    # @user.token = ACCESS_TOKEN
 
     @user.save
 
     cookies[:name] = @user.name
-    cookies[:token] = get_cookies_token
 
     render "user/callback"
 
