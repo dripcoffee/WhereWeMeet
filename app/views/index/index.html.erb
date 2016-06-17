@@ -17,7 +17,7 @@
       <% @activities.each do |activity| %>
         <li>
           <code><a href="/activity/<%= activity.id %>"><%= activity.name %></a></code>
-          <span class="social-hex"><%= activity.created_at %></span>
+          <span class="social-hex"><%= activity.created_at.strftime("%Y/%m/%d %H:%M") %></span>
         </li>
       <% end %>
       </ul>

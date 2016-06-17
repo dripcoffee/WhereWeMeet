@@ -1,0 +1,28 @@
+<div class="how-to">
+<div class="container">
+  <div class="row">
+    <h2>Activity #<%= @activity.id %></h2>
+    <div class="col-sm-offset-3 col-sm-6">
+      <ul class="social-class list-unstyled">
+        <li>
+          <h2>
+            <%= @activity.name %><span class="social-hex"><%= @activity.created_at.strftime("%Y/%m/%d %H:%M") %></span>
+          </h2>
+          <p>
+            <%= @activity.content %>
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-3 col-md-4">
+      <form method="post" action="/activity/checkin">
+        <legend>Check-in</legend>
+        <input type="text" name="place" value="">
+        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+        <input type="submit">
+      </form>
+    </div>
+  </div>
+</div>

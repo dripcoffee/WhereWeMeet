@@ -9,9 +9,11 @@
       <form method="post" action="/activity/add">
         <legend>New Activity</legend>
         <input type="text" name="name" value="<%= @example_activity %>">
-        <input type="text" name="content" value="">
-        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
         <input type="submit">
+        <div class="text-center">
+        <textarea name="content" value=""></textarea>
+        <%= tag(:input, :type => "hidden", :name => request_forgery_protection_token.to_s, :value => form_authenticity_token) %> 
+        </div>
       </form>
     </div>
   </div>

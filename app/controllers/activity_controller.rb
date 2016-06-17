@@ -31,4 +31,22 @@ class ActivityController < ApplicationController
 
     redirect_to action: "list", controller: "activity"
   end
+
+  def get_by_id
+    id = params[:id]
+    @activity = Activity.where({id: id, status: 0}).order("id DESC").last!
+
+    render "activity/get_by_id"
+  end
+
+  def get_by_user
+    users = User.where("name='#{params[:name]}'")
+    if users.empty?
+      redirect_to action: "index", controller: "index"
+    else
+      @user = users[0]
+      @activities = Activity.where({user: @user.id, status: 0}).order("id DESC")
+      render "activity/get_by_user"
+    end
+  end
 end

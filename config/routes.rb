@@ -8,7 +8,9 @@ Rails.application.routes.draw do
   get 'activity' => 'activity#list'
   get 'activity/new' => 'activity#new'
   post 'activity/add' => 'activity#add'
-  get 'activity/:id' => 'activity#get'
+  post 'activity/checkin' => 'activity#checkin'
+  get 'activity/user/:name' => 'activity#get_by_user'
+  get 'activity/:id' => 'activity#get_by_id'
 
   get 'user/new' => 'user#new'
   get 'user/callback' => 'user#callback'
