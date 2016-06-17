@@ -9,10 +9,14 @@ class UserController < ApplicationController
   end
 
   def info
-    users = User.where("name='crispgm'")
-    @user = users[0]
-
-    render "user/info"
+    user_name = cookies[:name]
+    users = User.where("name='#{user_name}'")
+    if users.empty?
+      redirect_to action: "index", controller: "index"
+    else
+      @user = users[0]
+      render "user/info"
+    end
   end
 
   def signout

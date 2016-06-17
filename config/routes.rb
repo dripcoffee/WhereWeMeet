@@ -1,17 +1,22 @@
 Rails.application.routes.draw do
 
   root 'index#index'
+  get 'about' => 'index#about'
+  get 'terms' => 'index#terms'
+  get 'help' => 'index#help'
   
   get 'activity' => 'activity#list'
   get 'activity/new' => 'activity#new'
+  post 'activity/add' => 'activity#add'
   get 'activity/:id' => 'activity#get'
-  get 'about' => 'index#about'
+
   get 'user/new' => 'user#new'
   get 'user/callback' => 'user#callback'
   get 'user/info' => 'user#info'
   get 'user/signout' => 'user#signout'
 
-  post 'activity/add' => 'activity#add'
+  get 'group' => 'group#list'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

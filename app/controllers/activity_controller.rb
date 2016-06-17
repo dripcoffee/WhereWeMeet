@@ -2,8 +2,12 @@ class ActivityController < ApplicationController
   def list
     user_name = cookies[:name]
     users = User.where("name='#{user_name}'")
-    @user = users[0]
-    @activities = Activity.where({user: @user.id, status: 0}).order("id DESC")
+    if users.empty?
+      redirect_to action: "index", controller: "index"
+    else
+      @user = users[0]
+      @activities = Activity.where({user: @user.id, status: 0}).order("id DESC")
+    end
   end
 
   def new
